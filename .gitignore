@@ -1,0 +1,5 @@
+# Backups
+*.bak
+
+# Dropbox garbage
+*conflicted\ copy*
