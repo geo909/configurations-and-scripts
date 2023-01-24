@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if lsb_release -a | grep -q Manjaro
+    then 
+        CLIPBOARD_MANAGER=clipit
+    else
+        CLIPBOARD_MANAGER=diodon
+fi
+
+exec $CLIPBOARD_MANAGER &

@@ -1,6 +1,8 @@
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 #
+# Autostart apps
+
 set $browser google-chrome
 set $secondarybrowser firefox
 
@@ -51,13 +53,16 @@ bindcode $mod+$n exec sh ~/.config/i3/scripts/rename.sh
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
+set $alt Mod1
 
 # Move workspace to monitor on the right
+#
 bindcode $mod + $m move workspace to output right
-
+bindcode $alt + ctrl + $v exec ~/bin/clipmanager
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
+#
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 for_window [class="^.*"] border pixel 2
@@ -350,10 +355,9 @@ mode "resize" {
 exec --no-startup-id volumeicon
 exec --no-startup-id xfce4-power-manager 
 # exec xfce4-clipman
-exec --no-startup-id clipit
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh  
-exec --no-startup-id nitrogen --restore #; sleep 1; compton -b # <-- compton is a compositor
+#exec --no-startup-id nitrogen --restore #; sleep 1; compton -b # <-- compton is a compositor
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
@@ -363,6 +367,7 @@ exec --no-startup-id fbxkb
 #exec --no-startup-id megasync
 exec --no-startup-id dropbox
 exec --no-startup-id flameshot
+exec sh ~/.config/i3/scripts/autostart.sh
 # Touchscreen only for laptop screen (workaround for multi-monitor setup)
 # exec --no-startup-id xinput map-to-output 12 eDP1
 # exec --no-startup-id blueman-applet
