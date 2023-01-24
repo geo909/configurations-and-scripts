@@ -1,0 +1,31 @@
+alias D="pushd ~/Desktop"
+alias DD="pushd ~/Desktop"
+alias c="clear"
+alias cl="clear; ls -lh"
+alias e=exit
+alias f="vifm"
+alias h='history | grep'
+alias pmi='sudo pacman -S'
+alias pmr='sudo pacman -Rs'
+alias sv='sudo nvim'
+alias t="pushd ~/Tmp"
+alias u="cd .."
+alias uu="sudo pacman -Syu"
+alias v='nvim'
+alias zshconfig="nvim ~/.zshrc"
+
+# dirs stack
+1='cd -'
+2='cd -2'
+3='cd -3'
+4='cd -4'
+5='cd -5'
+6='cd -6'
+7='cd -7'
+8='cd -8'
+9='cd -9'
+
+# Tools
+alias pwd2clip='pwd | xclip; pwd | xclip -sel clip'
+alias locate='locate -i'
+
