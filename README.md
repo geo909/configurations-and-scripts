@@ -1,6 +1,6 @@
 # Configurations
 
-## Nvim
+## Neovim
 
 1. Symlink the `nvim` directory to `$HOME/.config/nvim`
 2. Open nvim and run `:PlugInstall`
