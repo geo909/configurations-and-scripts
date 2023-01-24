@@ -16,9 +16,7 @@ Symlink the `vifm` directory to `$HOME/.config/vifm`
 1. Symlink `i3` to `$HOME/i3`
 2. Symlink `i3status` to `$HOME/i3status`
 
-*Prerequisites:* 
-
-Install `volume-icon-alsa`, `fbxkb` and any other thing that is being autostarted in the bottom of the config file.
+*Prerequisites:* Install `volume-icon-alsa`, `fbxkb` and any other thing that is being autostarted in the bottom of the config file.
 
 ## xorg.conf.d
 
