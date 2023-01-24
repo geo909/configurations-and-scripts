@@ -1,0 +1,147 @@
+### Templates
+snippet tm "Template Main: Start a typical C++ program"
+#include <iostream>
+using namespace std;
+$1
+int main(){
+return 0;
+}
+endsnippet
+
+snippet th "Template Header: Start a typical header file"
+#ifndef ADD_H
+#define ADD_H
+
+$1
+
+#endif
+endsnippet
+
+### Functions
+snippet fd "Function Declaration"
+${1:<Type>} ${2:<function name>}(${3:<arguments>});
+
+$4
+endsnippet
+
+snippet fb "Function Body"
+${1:<Type>} ${2:<function name>}(${3:<arguments>}){
+    ${4:<function body>}
+}
+
+$5
+endsnippet
+
+### Input/Output
+snippet co "std::COut"
+std::cout << $1;
+$2
+endsnippet
+
+snippet ci "std::CIn"
+std::cin >> $1;
+$2
+endsnippet
+
+### Variables declarations
+snippet vi "Variable Int"
+int ${1:VarName};
+$2
+endsnippet
+
+snippet vf "Variable Float"
+float ${1:VarName};
+$2
+endsnippet
+
+snippet vs "Variable String"
+string ${1:VarName};
+$2
+endsnippet
+
+snippet vc "Variable Char"
+char ${1:VarName};
+$2
+endsnippet
+
+snippet vv "Variable vector"
+vector<${1:Type}> ${2:Name};
+$2
+endsnippet
+
+### Loops
+snippet lf "Loop For"
+for( ${1:/*condition*/} ){
+    $2
+}
+
+$3
+endsnippet
+
+snippet lw "Loop While"
+while( ${1:/*condition*/} ){
+    $2
+}
+
+$3
+endsnippet
+
+snippet li "Loop If"
+if( ${1:/*condition*/} ){
+    $2
+} $3
+endsnippet
+
+snippet le "Loop Else"
+else {
+    $2
+}
+
+$3
+endsnippet
+
+# Classic for
+snippet for "For with int i"
+for( int i = 0; i < $1; i++){
+    $2
+}
+
+$3
+endsnippet
+
+### Misc
+snippet todo "To-do note"
+/* TO-DO by `echo $USER`: ${1:description} `!v strftime("%a %b %m, %I:%M:%S")` */
+
+$2
+endsnippet
+
+snippet fpv "Function Print Vector"
+${0:// #include<vector>}
+template <typename T>
+void printvector(std::vector<T> V){
+    for(int i=0; i<V.size(); i++){
+        std::cout << V[i] << " ";
+    }
+    std::cout << std::endl;
+}
+endsnippet
+
+snippet fin "Function IN"
+template < typename T>
+std::pair<bool, int> isinvector(const std::vector<T>& V, const T &x){
+    std::pair<bool, int > result;
+    auto it = std::find(V.begin(), V.end(), x);
+    if (it != V.end()){
+        result.first = true;
+        result.second = distance(V.begin(), it);
+    }
+    else{
+        result.first = false;
+        result.second = -1;
+    }
+    return result;
+    // result.first() : 1 if x is in V, 0 otherwise
+    // result.second() : returns first index or -1 if x is not in V
+}
+endsnippet

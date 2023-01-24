@@ -1,0 +1,249 @@
+# Comment
+
+snippet # "Comment visual wrap xml tag"
+<!-- ${1:${VISUAL}} -->$0
+endsnippet
+
+# Generic tag
+snippet t "A simple xml tag" b
+<$1>${2:${VISUAL}}</$1>$0
+endsnippet
+
+# Generic tag with xml:id
+snippet et "Xml tags with id" b
+<$1 xml:id="$2">
+    $3
+</$1>
+$0
+endsnippet
+
+# Paragraphs
+snippet p "Paragraph xml tag" b
+<p>${1:${VISUAL}}</p>
+$0
+endsnippet
+
+# Gcd
+snippet gcd "Paragraph xml tag"
+\gcd(${1:${VISUAL}})$0
+endsnippet
+
+snippet mrow "Row align" b
+<mrow>${1:${VISUAL}}</mrow>
+$0
+endsnippet
+
+snippet ol "Enumerate"
+<ol>
+    <li>$1
+    </li>
+    <li>$2
+    </li>
+</ol>
+$0
+endsnippet
+
+snippet ul "Itemize"
+<ol>
+    <li>$1
+    </li>
+    <li>$2
+    </li>
+</ol>
+$0
+endsnippet
+
+# Emphasize
+snippet em "Emphasized text xml tag"
+<em>${1:${VISUAL}}</em>$0
+endsnippet
+
+# Term
+snippet term "Emphasized text to use with new terms xml tag"
+<term>${1:${VISUAL}}</term>$0
+endsnippet
+
+# if and only iff
+snippet iff "if and only if"
+if and only if$0
+endsnippet
+
+# Math
+snippet m "Math xml tag"
+<m>${1:${VISUAL}}</m>$0
+endsnippet
+
+# Display math
+snippet me "Math xml tag" b
+<me>${1:${VISUAL}}</me>$0
+endsnippet
+
+# Numbered display math
+snippet men "Numbered math xml tag" b
+<men xml:id="Equation$1">
+	${2:${VISUAL}}
+</men>$0
+endsnippet
+
+# Latex algin math
+snippet align "Latex align xml tag" b
+<md>
+    <mrow>$1 &amp;$2 </mrow>
+    <mrow>$3 &amp;$4 </mrow>
+</md>
+$0
+endsnippet
+
+# Latex: ampersand for align, etc
+snippet & "Latex ampersand"
+&amp; $0
+endsnippet
+
+
+##### Environments
+#<example xml:id="Example$1">
+snippet example "Mathbook example environment" b
+<example>
+<p>$2</p>
+</example>
+$0
+endsnippet
+
+snippet "def" "Mathbook definition environment" br
+<definition xml:id="Definition$1">
+    <statement>
+        <p>$2</p>
+    </statement>
+</definition>
+$0
+endsnippet
+
+snippet "b(egin)?" "begin{} / end{}" br
+\begin{${1:<++>}}
+	${2:${VISUAL}}
+\end{$1}
+$0
+endsnippet
+
+snippet solution "Mathbook solution environment" b
+<solution>
+	<p>$0
+	</p>
+</solution>
+endsnippet
+
+#<theorem xml:id="Theorem$1">
+snippet theorem "Mathbook theorem environment" b
+<theorem>
+    <statement>
+        <p>$2</p>
+    </statement>
+    <proof>
+        <p>
+        $3
+        </p>
+    </proof>
+</theorem>
+$0
+endsnippet
+
+#<proposition xml:id="Proposition$1">
+snippet proposition "Mathbook proposition environment" b
+<proposition>
+    <statement>
+        <p>$2</p>
+    </statement>
+    <proof>
+        <p>
+        $3
+        </p>
+    </proof>
+</proposition>
+$0
+endsnippet
+
+snippet exercise "Mathbook exercise environment" b
+<exercise>
+    <statement>
+        <p>$1</p>
+    </statement>
+    <solution>
+        <p>
+        $2
+        </p>
+    </solution>
+</exercise>
+$0
+endsnippet
+
+######### Latex
+# Brackets
+snippet { "Bracket"
+{$1} $0
+endsnippet
+
+# Fractions
+snippet frac "\frac{}{}"
+\frac{$1}{$2} $0
+endsnippet
+
+# Text
+snippet text "\text{}"
+\text{ $1 } $0
+endsnippet
+
+# Equiv modulo
+snippet = "Equivalence modulo "
+$1 \equiv $2 \Mod $0
+endsnippet
+
+# Sets
+snippet set "Latex set"
+\\{$1\\}$0
+endsnippet
+
+# quotes
+snippet quot "quotes"
+<q>${1:${VISUAL}}</q>$0
+endsnippet
+
+# Mathbook references
+snippet ref "Reference"
+<xref ref="${1:${VISUAL}}"/>$0
+endsnippet
+
+snippet frac "Fraction" w
+\frac{${1:${VISUAL:nom}}}{${2:denom}}
+endsnippet
+
+snippet ( "( )" w
+(${1:${VISUAL}})$0
+endsnippet
+
+snippet lr( "left( right)" w
+\left(${1:${VISUAL}}\right)$0
+endsnippet
+
+snippet lr| "left| right|" w
+\left|${1:${VISUAL}}\right|$0
+endsnippet
+
+snippet lr< "< >" w
+\langle${1:${VISUAL}}\rangle$0
+endsnippet
+
+snippet lr{ "left\{ right\}" w
+\left\\{${1:${VISUAL}} \right\\}$0
+endsnippet
+
+snippet lr[ "left[ right]" w
+\left[${1:${VISUAL}}\right]$0
+endsnippet
+
+snippet cdat 
+<![CDATA[
+\[
+	${1:${VISUAL}}
+\]
+]]>$0
+endsnippet
