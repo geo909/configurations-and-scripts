@@ -26,8 +26,8 @@ This will give you things like system-wide Esc & Tab swap.
 ## ZSH
 
 1. `git clone https://github.com/ohmyzsh/ohmyzsh.git ~/git/zsh/ohmyzsh`
-2. `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~git/zsh/zsh-users/zsh-syntax-highlighting`
-3. `git clone https://github.com/zsh-users/zsh-autosuggestions.git ~git/zsh/zsh-users/zsh-autosuggestions`
+2. `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/git/zsh/zsh-users/zsh-syntax-highlighting`
+3. `git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/git/zsh/zsh-users/zsh-autosuggestions`
 4. Install `jump` by `yay -S jump` or `snap install jump`
 5. Run `~/git/zsh/ohmyzsh/tools/install.sh`
 6. Symlink `.zshrc` and `.zsh_aliases` under $HOME
