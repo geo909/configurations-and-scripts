@@ -1,0 +1,35 @@
+#! /bin/bash
+#
+# Reminder: "encrypted icybox"
+
+mnt_dir='/mnt/icybox'
+disk_id='/dev/disk/by-id/usb-ST500LT0_12-9WS142_987654321029-0:0'
+
+Help () { echo "Options:
+    -m for mount
+    -b for backup
+    -g to go to the location
+    -d for dismount"; 
+}
+
+# Get the options
+while getopts "dhmbg" options; do
+   case ${options} in
+      m) echo "Mounting icybox"
+         veracrypt --text --mount $disk_id --slot=12 --pim=0 --keyfiles="" --protect-hidden=no $mnt_dir
+         echo "Done"
+         ;;
+      b) echo "Performing backup"
+         unison icybox.prf
+         ;;
+      g) # Go to location
+         pushd $mnt_dir; vifm
+         ;;
+      d) echo "Dismounting icybox"
+         veracrypt -d $mnt_dir
+         ;;
+      h) Help
+         ;;
+    
+   esac
+done
