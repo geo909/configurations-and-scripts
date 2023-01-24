@@ -21,3 +21,7 @@ Symlink the `vifm` directory to `$HOME/.config/vifm`
    export PATH="$PATH:$HOME/bin"
    ```
 
+## i3
+
+1. Symlink `i3` to `$HOME/i3`
+1. Symlink `i3status` to `$HOME/i3status`
