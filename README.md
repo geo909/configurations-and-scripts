@@ -34,6 +34,12 @@ This will give you things like system-wide Esc & Tab swap.
 
 I may have missed something so there may be the need for a little experimentation with this one. Also, uncomment the lines for `pyenv` when the time comes. You may have to run `zsh` on the terminal for the configuration to take effect.
 
+## etc
+
+### .profile
+
+This is located in `~/.profile`. However, it is not a good idea to just link it, maybe just copy-paste any relevant pieces into it.
+
 # Scripts
 
 ## Bin
