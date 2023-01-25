@@ -29,3 +29,12 @@ alias zshconfig="nvim ~/.zshrc"
 alias pwd2clip='pwd | xclip; pwd | xclip -sel clip'
 alias locate='locate -i'
 
+# VPN
+#Prerequisite: `openvpn3 config-import --config ferryhopper.ovpn`
+alias vpnstart='openvpn3 session-start --config ferryhopper.ovpn'
+alias vpnstop='openvpn3 session-manage --config ferryhopper.ovpn --disconnect'
+
+# Alternative without prerequisites
+# alias vpnstart='openvpn3 session-start --config ~/.vpn/ferryhopper.ovpn'
+# alias vpnstop='openvpn3 session-manage --disconnect --config ~/.vpn/ferryhopper.ovpn'
+
