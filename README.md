@@ -34,6 +34,8 @@ This will give you things like system-wide Esc & Tab swap.
 
 I may have missed something so there may be the need for a little experimentation with this one. Also, uncomment the lines for `pyenv` when the time comes. You may have to run `zsh` on the terminal for the configuration to take effect.
 
+Also you need to install `lsb_core` (ubuntu) otherwise when sourcing `.zsh_aliases` there will be an annoying message "no lsb modules are available"
+
 ## etc
 
 ### .profile

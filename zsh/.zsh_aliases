@@ -1,20 +1,16 @@
+# Navigation
+
+## Shortcuts
 alias D="pushd ~/Desktop"
-alias DD="pushd ~/Desktop"
+alias bi="pushd ~/git/bi"
 alias c="clear"
 alias cl="clear; ls -lh"
 alias e=exit
 alias f="vifm"
-alias h='history | grep'
-alias pmi='sudo pacman -S'
-alias pmr='sudo pacman -Rs'
-alias sv='sudo nvim'
 alias t="pushd ~/Tmp"
 alias u="cd .."
-alias uu="sudo pacman -Syu"
-alias v='nvim'
-alias zshconfig="nvim ~/.zshrc"
 
-# dirs stack
+## dirs stack
 1='cd -'
 2='cd -2'
 3='cd -3'
@@ -25,16 +21,32 @@ alias zshconfig="nvim ~/.zshrc"
 8='cd -8'
 9='cd -9'
 
-# Tools
-alias pwd2clip='pwd | xclip; pwd | xclip -sel clip'
-alias locate='locate -i'
+# App shortcuts
+
+## Package manager
+if lsb_release -a | grep -q Manjaro
+    then 
+        # Manjaro
+        alias pmi='sudo pacman -S'
+        alias pmr='sudo pacman -Rs'
+        alias uu="sudo pacman -Syu"
+    else
+        # Ubuntu
+        alias pmi='sudo apt install'
+        alias pmr='sudo apt remove'
+        alias uu="sudo apt update; sudo apt upgrade"
+fi
+
+alias h='history | grep'
+alias sv='sudo nvim'
+alias v='nvim'
+alias zshconfig="nvim ~/.zshrc"
+
 
 # VPN
-#Prerequisite: `openvpn3 config-import --config ferryhopper.ovpn`
-alias vpnstart='openvpn3 session-start --config ferryhopper.ovpn'
-alias vpnstop='openvpn3 session-manage --config ferryhopper.ovpn --disconnect'
+alias vpnstart='openvpn3 session-start --config ~/.vpn/ferryhopper.ovpn'
+alias vpnstop='openvpn3 session-manage --disconnect --config ~/.vpn/ferryhopper.ovpn'
 
-# Alternative without prerequisites
-# alias vpnstart='openvpn3 session-start --config ~/.vpn/ferryhopper.ovpn'
-# alias vpnstop='openvpn3 session-manage --disconnect --config ~/.vpn/ferryhopper.ovpn'
-
+# Various tools
+alias locate='locate -i'
+alias pwd2clip='pwd | xclip; pwd | xclip -sel clip'
