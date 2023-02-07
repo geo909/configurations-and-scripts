@@ -42,6 +42,43 @@ Also you need to install `lsb_core` (ubuntu) otherwise when sourcing `.zsh_alias
 
 This is located in `~/.profile`. However, it is not a good idea to just link it, maybe just copy-paste any relevant pieces into it.
 
+## python
+
+### pyenv
+
+1. Install build dependencies:
+   ```
+   sudo apt update; sudo apt install build-essential libssl-dev zlib1g-dev \
+   libbz2-dev libreadline-dev libsqlite3-dev curl \
+   libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+   ```
+2. `git clone https://github.com/pyenv/pyenv ~/git/python/pyenv`
+3. Symlink `~/git/python/pyenv` to `~/.pyenv`
+4. Add the following into `.profile`, if it is not there already.
+   ```
+   # Pyenv
+   export PYENV_ROOT="$HOME/.pyenv"
+   command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+   eval "$(pyenv init -)"
+   ```
+
+### pyenv-virtualenv
+
+There is a guide [here](https://github.com/pyenv/pyenv-virtualenv). In short:
+
+1. `git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv`
+2. `echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc`
+3. `echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc`
+4. Add the following into your `.zshrc` if they are not there already:
+   ```
+   eval "$(pyenv virtualenv-init -)"
+   export PS1='%F{magenta}[$(pyenv version-name)] '$PS1
+   ```
+
+
+
+Symlink
+
 # Scripts
 
 ## Bin
@@ -51,4 +88,6 @@ This is located in `~/.profile`. However, it is not a good idea to just link it,
    ```
    export PATH="$PATH:$HOME/bin"
    ```
+
+
 

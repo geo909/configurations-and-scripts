@@ -93,11 +93,11 @@ source $ZSH/oh-my-zsh.sh
 # source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-# For the python environment on prompt, check the theme file at $ZSH/themes
-#export PS1='%F{magenta}[$(pyenv version-name)] '$PS1
+# Python pyenv and virtual env
+## eval "$(pyenv init -)" # No: put in .profile instead
+eval "$(pyenv virtualenv-init -)"
+export PS1='%F{magenta}[$(pyenv version-name)] '$PS1
+## export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 # Jump
 # Requiries yay -S jump or sudo snap install jump
