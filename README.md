@@ -75,10 +75,6 @@ There is a guide [here](https://github.com/pyenv/pyenv-virtualenv). In short:
    export PS1='%F{magenta}[$(pyenv version-name)] '$PS1
    ```
 
-
-
-Symlink
-
 # Scripts
 
 ## Bin
