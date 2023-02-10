@@ -81,7 +81,7 @@ nnoremap <a-t> :silent !xfce4-terminal &<cr>
 "  endif
 "endfunction
 
-au BufEnter * call SmartInsert()
+"au BufEnter * call SmartInsert()
 
 "" 
 " Mappings ==================================================================
