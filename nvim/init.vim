@@ -53,32 +53,36 @@ set splitright
 set visualbell                  " This is actually for pycharm, otherwise it beeps 
  
 
-" Neovim terminal ============================================================
-" Update: I was not using it, did not like it 
+" Terminal
+"" Run xfce4-terminal on shortcut
+nnoremap <a-t> :silent !xfce4-terminal &<cr>
+
+" Neovim terminal
 "" Map <Esc> to exit terminal-mode:
-""'tnoremap <Esc> <C-\><C-n>
-"" nnoremap <C-t> :Ttoggle<CR>
+" tnoremap <Esc> <C-\><C-n>
+" nnoremap <C-t> :Ttoggle<CR>
 "" open terminal in bottom split
-"" let g:neoterm_default_mod='vertical'
-"" let g:neoterm_size=50
+" let g:neoterm_default_mod='vertical'
+" let g:neoterm_size=50
 "" "" Scroll to the bottom when running a command
-"" let g:neoerm_autoscroll=1
-"" let g:neoterm_use_relative_path=1
+" let g:neoerm_autoscroll=1
+" let g:neoterm_use_relative_path=1
 "" "" Open terminal in insert mode by default
 "" "" https://github.com/neovim/neovim/issues/8816
-"" let g:previous_window = -1
-"" function SmartInsert()
-""   if &buftype == 'terminal'
-""     if g:previous_window != winnr()
-""       startinsert
-""     endif
-""     let g:previous_window = winnr()
-""   else
-""     let g:previous_window = -1
-""   endif
-"" endfunction
-"" 
-"" au BufEnter * call SmartInsert()
+" let g:previous_window = -1
+" function SmartInsert()
+"  if &buftype == 'terminal'
+"    if g:previous_window != winnr()
+"      startinsert
+"    endif
+"    let g:previous_window = winnr()
+"  else
+"    let g:previous_window = -1
+"  endif
+"endfunction
+
+au BufEnter * call SmartInsert()
+
 "" 
 " Mappings ==================================================================
 
@@ -141,7 +145,7 @@ nnoremap <leader>g mg<leader>g
 "" Windows
 nnoremap <C-w>j <C-W><C-J>
 nnoremap <C-w>k <C-W><C-K>
-nnoremap <C-w>s <C-W>"<C-S>
+nnoremap <C-w>s <C-W><C-S>
 nnoremap <C-w>v <C-W><C-V>
 nnoremap <C-w>o <C-W><C-O>
 nnoremap <C-w>l <C-W><C-L>
@@ -214,9 +218,6 @@ let g:neoformat_basic_format_retab = 1
 """ Enable trimmming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
 
-" Other =====================================================================
-"" Run lxterminal on shortcut
-nnoremap <a-t> :silent !lxterminal &<cr>
 
 "" Enable python
 """ https://jdhao.github.io/2019/04/22/mix_python_and_vim_script/
