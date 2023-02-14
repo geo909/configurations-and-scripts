@@ -42,6 +42,10 @@ Also you need to install `lsb_core` (ubuntu) otherwise when sourcing `.zsh_alias
 
 This is located in `~/.profile`. However, it is not a good idea to just link it, maybe just copy-paste any relevant pieces into it.
 
+### .windows
+
+Symlink this to `$HOME/applications/configurations`. You need vpn for this to work.
+
 ## python
 
 ### pyenv

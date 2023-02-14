@@ -1,0 +1,5 @@
+# Need to symlink windowsvm.rdp to ~/applications/configurations
+
+xfreerdp $HOME/applications/configurations/windowsvm.rdp /f
+
+# Could also set the flag /p:yourpassword
