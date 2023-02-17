@@ -30,3 +30,9 @@ fi
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/bin"
 export EDITOR=/usr/bin/nvim
+
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

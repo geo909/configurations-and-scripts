@@ -76,7 +76,7 @@ bindkey '^j' autosuggest-execute
 #
 
 source ~/.zsh_aliases
-source ~/.profile
+#source ~/.profile
 
 export PATH="$HOME/.screenlayout:$HOME/bin:$PATH"
 
@@ -95,7 +95,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Python pyenv and virtual env
 ## eval "$(pyenv init -)" # No: put in .profile instead
-eval "$(pyenv virtualenv-init -)"
+## eval "$(pyenv virtualenv-init -)"
 export PS1='%F{magenta}[$(pyenv version-name)] '$PS1
 ## export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
