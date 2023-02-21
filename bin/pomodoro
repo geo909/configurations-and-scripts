@@ -1,0 +1,19 @@
+#!/bin/bash
+# See https://bbs.archlinux.org/viewtopic.php?pid=1355573#p1355573
+# To add sound, do something like:
+# mplayer pomodorostarted.ogg > /dev/null 2>&1
+
+clear
+while true; do
+    echo "Pomodoro started on $(date +%H:%M)"
+    printf "=========================\n"
+    sleep 23m
+    echo -ne "2 minutes left    "\\r
+    sleep 2m
+    #Break starts - computer freezes
+    chvt 10
+    kbd_mode -fs
+    sleep 5m
+    kbd_mode -fu
+    chvt 7
+done
