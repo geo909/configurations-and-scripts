@@ -58,7 +58,7 @@ set $alt Mod1
 # Move workspace to monitor on the right
 #
 bindcode $mod + $m move workspace to output right
-bindcode $alt + ctrl + $v exec ~/bin/clipmanager
+bindcode $alt + ctrl + $v exec diodon
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -112,7 +112,6 @@ bindcode $mod+$z exec --no-startup-id morc_menu
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
-# Start Applications
 bindcode $mod+Ctrl+$b exec terminal -e 'bmenu'
 bindcode $mod+$a exec $browser
 bindcode $mod+Shift+$a exec $secondarybrowser
@@ -352,32 +351,15 @@ mode "resize" {
 #
 # startup applications
 #
+exec --no-startup-id diodon
 exec --no-startup-id volumeicon
 exec --no-startup-id xfce4-power-manager 
-# exec xfce4-clipman
-#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh  
-#exec --no-startup-id nitrogen --restore #; sleep 1; compton -b # <-- compton is a compositor
-#exec --no-startup-id manjaro-hello
-exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-#exec --no-startup-id pamac-tray
 exec --no-startup-id fbxkb
-#exec --no-startup-id megasync
-exec --no-startup-id dropbox
+#exec --no-startup-id dropbox
 exec --no-startup-id flameshot
-exec sh ~/.config/i3/scripts/autostart.sh
-# Touchscreen only for laptop screen (workaround for multi-monitor setup)
-# exec --no-startup-id xinput map-to-output 12 eDP1
-# exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-# exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
-# exec --no-startup-id xautolock -time 10 -locker blurlock
 #
-exec nitrogen --restore &
-
+#
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
