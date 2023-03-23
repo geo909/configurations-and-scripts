@@ -30,6 +30,9 @@ fi
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/bin"
 export EDITOR=/usr/bin/nvim
+# You should add an if/else logic and sourcing of separate 
+# config files, depending on the system being arch or ubuntu
+export BROWSER=/usr/bin/google-chrome
 
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"

@@ -130,3 +130,5 @@ function chpwd() {
 
 # eval "$(direnv hook zsh)"
 
+# Source secrets
+source $HOME/.secrets/dev_env

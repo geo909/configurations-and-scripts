@@ -12,8 +12,8 @@ while true; do
     sleep 2m
     #Break starts - computer freezes
     chvt 10
-    kbd_mode -fs
+    #kbd_mode -fs
     sleep 5m
-    kbd_mode -fu
+    #kbd_mode -fu
     chvt 7
 done
