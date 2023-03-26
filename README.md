@@ -87,6 +87,3 @@ There is a guide [here](https://github.com/pyenv/pyenv-virtualenv). In short:
    ```
    export PATH="$PATH:$HOME/bin"
    ```
-
-
-
