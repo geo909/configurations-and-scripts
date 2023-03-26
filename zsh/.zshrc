@@ -95,9 +95,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Python pyenv and virtual env
 ## eval "$(pyenv init -)" # No: put in .profile instead
-## eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv virtualenv-init -)"
 export PS1='%F{magenta}[$(pyenv version-name)] '$PS1
-## export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+## export PYENV_VIRTUALENV_DISABLE_PROMPT=1 # I don't remember what this was doing
 
 # Jump
 # Requiries yay -S jump or sudo snap install jump

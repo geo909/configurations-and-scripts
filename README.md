@@ -36,11 +36,11 @@ I may have missed something so there may be the need for a little experimentatio
 
 Also you need to install `lsb_core` (ubuntu) otherwise when sourcing `.zsh_aliases` there will be an annoying message "no lsb modules are available"
 
-## etc
+## profile
 
-### .profile
+### .profile_george
 
-This is located in `~/.profile`. However, it is not a good idea to just link it, maybe just copy-paste any relevant pieces into it.
+Symlink this to ~/.profile_george and add the following to your original .profile: `source .profile_george`
 
 ### .windows
 
@@ -72,8 +72,7 @@ There is a guide [here](https://github.com/pyenv/pyenv-virtualenv). In short:
 
 1. `git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv`
 2. `echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc`
-3. `echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc`
-4. Add the following into your `.zshrc` if they are not there already:
+3. Add the following into your `.zshrc` if they are not there already:
    ```
    eval "$(pyenv virtualenv-init -)"
    export PS1='%F{magenta}[$(pyenv version-name)] '$PS1
