@@ -1,14 +1,12 @@
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/tzanakis/.zshrc'
+zstyle :compinstall filename '$HOME/.zshrc'
 autoload -Uz compinit
 compinit
 
 # Path to your oh-my-zsh installation.
 # Requires cloning the repo
-ZSH=~/git/zsh/ohmyzsh
-ZSHUSERS=~/git/zsh/zsh-users
-
-# ZSH_THEME="robbyrussell"
+ZSH=$HOME/git/zsh/ohmyzsh
+ZSHUSERS=$HOME/git/zsh/zsh-users
 ZSH_THEME="juanghurtado"
 
 
@@ -56,14 +54,9 @@ zplug "zsh-users/zsh-autosuggestions"
 
 # Requires the installation of zsh-syntax-highlighting (exists in both ubuntu and arch)
 
-## Old Manjaro setup
-#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 # Requrires to clone zsh-users/zsh-syntax-highlighting and zsh-users/zsh-autosuggestions
 source $ZSHUSERS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSHUSERS/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 
 bindkey '^ ' autosuggest-accept
 bindkey '^j' autosuggest-execute
@@ -73,14 +66,8 @@ bindkey '^j' autosuggest-execute
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
 
 source ~/.zsh_aliases
-#source ~/.profile
-
-export PATH="$HOME/.screenlayout:$HOME/bin:$PATH"
-
-export PIP_REQUIRE_VIRTUALENV=true
 
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
@@ -89,15 +76,11 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
 fi
 source $ZSH/oh-my-zsh.sh
 
-# Requires: sudo pacman -S zsh-syntax-highlighting
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Python pyenv and virtual env
-## eval "$(pyenv init -)" # No: put in .profile instead
+# pyenv
+# Put in .profile:
+# eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 export PS1='%F{magenta}[$(pyenv version-name)] '$PS1
-## export PYENV_VIRTUALENV_DISABLE_PROMPT=1 # I don't remember what this was doing
 
 # Jump
 # Requiries yay -S jump or sudo snap install jump
@@ -122,13 +105,13 @@ chpwd_functions+=__jump_chpwd
 
 compctl -U -K jump_completion j
 
-############ Ls after entering a directory
+############ Run ls after entering a directory
 function chpwd() {
     emulate -L zsh
     clear; ls -lh
 }
 
-# eval "$(direnv hook zsh)"
-
 # Source secrets
 source $HOME/.secrets/dev_env
+
+export QT_QPA_PLATFORMTHEME=qt5ct
