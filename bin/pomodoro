@@ -7,7 +7,7 @@ clear
 while true; do
     echo "Pomodoro started on $(date +%H:%M)"
     printf "=========================\n"
-    sleep 23m
+    sleep 43m
     echo -ne "2 minutes left    "\\r
     sleep 2m
     #Break starts - computer freezes
