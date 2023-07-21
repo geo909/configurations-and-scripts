@@ -41,6 +41,8 @@ alias h='history | grep'
 alias sv='sudo nvim'
 alias v='nvim'
 alias zshconfig="nvim ~/.zshrc"
+alias history_edit="nvim ~/.zsh_history"
+alias he="nvim ~/.zsh_history"
 
 
 # VPN
