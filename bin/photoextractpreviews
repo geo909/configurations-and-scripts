@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# input *CR2
+#https://ninedegreesbelow.com/photography/exiftool-commands.html
+
+exiftool -P -overwrite_original '-filename<DateTimeOriginal' -d %Y%m%d_%H%M%S.%%le *RAF *raf *CR2 *cr2
+exiftool -b -PreviewImage -w _raw.jpg -ext raf -ext RAF -r .
+exiftool -tagsfromfile %d%-.4f.raf -all:all -r -overwrite_original -ext jpg .
+exiftool -P '-filename<DateTimeOriginal' -d %Y%m%d_%H%M%S%%-c_raw.%%le *jpg
+
+# Careful! 4f corresponds to the four characters "_raw"; change accordingly if you change the suffix above
+

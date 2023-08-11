@@ -1,1 +1,0 @@
-exiftool -P '-filename<DateTimeOriginal' -d %Y%m%d_%H%M%S%%-c.%%le *JPG *RAF

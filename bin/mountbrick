@@ -1,0 +1,11 @@
+#!/bin/bash
+
+pmount /dev/disk/by-uuid/4d02ac35-46cf-48a9-af19-91121f014f03 /media/BRICK
+
+zenity --error --text="Don't forget to put a post it note on the deck\!" --title="Warning\!"
+xfce4-terminal -e 'vifm /media/BRICK'
+
+while true; do
+    touch /media/BRICK/
+    sleep 290
+done
