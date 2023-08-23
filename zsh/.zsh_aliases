@@ -47,7 +47,8 @@ alias he="nvim ~/.zsh_history"
 
 # VPN
 alias vpnstart='openvpn3 session-start --config ~/.vpn/ferryhopper.ovpn'
-alias vpnstop='openvpn3 session-manage --disconnect --config ~/.vpn/ferryhopper.ovpn'
+#alias vpnstop='openvpn3 session-manage --disconnect --config ~/.vpn/ferryhopper.ovpn'
+alias vpnstop="openvpn3 sessions-list | grep -o '/net/openvpn/v3/sessions/[^[:space:]]*' | xargs -I {} openvpn3 session-manage --session-path {} --disconnect"
 
 # Various tools
 alias locate='locate -i'
