@@ -58,6 +58,7 @@ set $alt Mod1
 # Move workspace to monitor on the right
 #
 bindcode $mod + $m move workspace to output right
+bindcode $mod+Shift+$m move workspace to output up
 bindcode $alt + ctrl + $v exec diodon
 
 # set default desktop layout (default is tiling)
