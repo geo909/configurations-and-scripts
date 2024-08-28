@@ -53,3 +53,4 @@ alias vpnstop="openvpn3 sessions-list | grep -o '/net/openvpn/v3/sessions/[^[:sp
 # Various tools
 alias locate='locate -i'
 alias pwd2clip='pwd | xclip; pwd | xclip -sel clip'
+alias localc='env GTK_THEME=Adwaita localc'
