@@ -1,0 +1,9 @@
+[Unit]
+Description=Update zplug plugins (quiet)
+
+[Service]
+Type=oneshot
+Environment=ZPLUG_HOME=%h/.zplug
+Environment=ZPLUG_LOG_LEVEL=error
+ExecStart=%h/.local/bin/zsh -lc '[[ -d "$ZPLUG_HOME" ]] && source $ZPLUG_HOME/init.zsh && zplug update --self --verbose=false || true'
+

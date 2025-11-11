@@ -1,8 +1,12 @@
 #!/bin/bash
 
-pmount /dev/disk/by-uuid/4d02ac35-46cf-48a9-af19-91121f014f03 /media/BRICK
+# /dev/sda1: LABEL="BRICK" UUID="4d02ac35-46cf-48a9-af19-91121f014f03" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="87dcbebe-f95f-46d1-8499-7be1d0237383"
 
-zenity --error --text="Don't forget to put a post it note on the deck\!" --title="Warning\!"
+
+#mount /dev/disk/by-uuid/4d02ac35-46cf-48a9-af19-91121f014f03 /media/BRICK
+mount /media/BRICK
+
+#zenity --error --text="Don't forget to put a post it note on the deck\!" --title="Warning\!"
 xfce4-terminal -e 'vifm /media/BRICK'
 
 while true; do

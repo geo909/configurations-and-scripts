@@ -25,12 +25,22 @@ This will give you things like system-wide Esc & Tab swap.
 
 ## ZSH
 
+Update November 11: a lot of stuff has changed to make things more lean for terminal startup
+
+---
+
 1. `git clone https://github.com/ohmyzsh/ohmyzsh.git ~/git/zsh/ohmyzsh`
 2. `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/git/zsh/zsh-users/zsh-syntax-highlighting`
 3. `git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/git/zsh/zsh-users/zsh-autosuggestions`
 4. Install `jump` by `yay -S jump` or `snap install jump`
 5. Run `~/git/zsh/ohmyzsh/tools/install.sh`
-6. Symlink `.zshrc` and `.zsh_aliases` under $HOME
+6. Symlink `.zshrc`, `.zprofile` and `.zsh_aliases` under $HOME
+7. Symlink the stuff under `configurations-and-scripts/systemd` under `~/.config/systemd/user`
+8. Run:
+   ```
+   systemctl --user enable --now zplug-update.timer
+   systemctl --user enable --now zsh-compdump.timer
+   ```
 
 I may have missed something so there may be the need for a little experimentation with this one. Also, uncomment the lines for `pyenv` when the time comes. You may have to run `zsh` on the terminal for the configuration to take effect.
 

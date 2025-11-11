@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# dbsync: run rclone bisync for the current subfolder of /home/tzanakis/rclone/dropbox
+# Usage: cd /home/tzanakis/rclone/dropbox/<some/sub/folder> && dbsync [extra rclone args]
+
+set -euo pipefail
+
+BASE="/home/tzanakis/rclone/dropbox"
+REMOTE="dropbox"
+
+# Ensure rclone is available
+if ! command -v rclone >/dev/null 2>&1; then
+  echo "Error: rclone not found in PATH." >&2
+  exit 127
+fi
+
+# Resolve current directory to an absolute, symlink-free path
+# Fallback to pwd if realpath is not available
+if command -v realpath >/dev/null 2>&1; then
+  CWD="$(realpath -e .)"
+else
+  CWD="$(pwd -P)"
+fi
+
+# Verify we're in a subfolder of $BASE (not the base itself)
+case "$CWD" in
+  "$BASE") 
+    echo "Error: You are at '$BASE'. Please cd into a subfolder before running dbsync." >&2
+    exit 1
+    ;;
+  "$BASE"/*) 
+    REL="${CWD#"$BASE/"}"
+    ;;
+  *)
+    echo "Error: Current folder is not under '$BASE'." >&2
+    echo "       CWD: $CWD" >&2
+    exit 1
+    ;;
+esac
+
+# Compose paths
+LOCAL="$CWD"
+CLOUD="$REMOTE:$REL"
+
+# Always be verbose by default (-v), but pass through any extra args the user supplied.
+# Users can add flags like --dry-run/-n, --resync, etc.
+echo "Running: rclone bisync -v \"$LOCAL\" \"$CLOUD\" $*"
+exec rclone bisync -v "$LOCAL" "$CLOUD" "$@"

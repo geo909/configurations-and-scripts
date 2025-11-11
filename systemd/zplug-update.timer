@@ -1,0 +1,10 @@
+
+[Unit]
+Description=Run zplug update weekly
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+
+[Install]
+WantedBy=default.target

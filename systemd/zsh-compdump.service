@@ -1,0 +1,6 @@
+[Unit]
+Description=Precompile zsh completion dump
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/zsh -lc 'autoload -Uz compinit; compinit -d $ZSH_CACHE_DIR/.zcompdump; zcompile $ZSH_CACHE_DIR/.zcompdump'

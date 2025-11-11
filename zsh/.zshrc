@@ -1,123 +1,59 @@
-# The following lines were added by compinstall
-zstyle :compinstall filename '$HOME/.zshrc'
-autoload -Uz compinit
-compinit
+# ---------- Basic completion config ----------
+# Let OMZ run compinit ONCE; just configure caching.
+export ZSH_DISABLE_COMPFIX=true
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$ZSH_CACHE_DIR"
 
-# Path to your oh-my-zsh installation.
-# Requires cloning the repo
-ZSH=$HOME/git/zsh/ohmyzsh
-ZSHUSERS=$HOME/git/zsh/zsh-users
+# Theme & plugins
 ZSH_THEME="juanghurtado"
+plugins=(git vi-mode sudo)
 
+# Only now: source OMZ (this will run compinit once)
+source "$HOME/git/zsh/ohmyzsh/oh-my-zsh.sh"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+# ---------- Aliases ----------
+[[ -f "$HOME/.zsh_aliases" ]] && source "$HOME/.zsh_aliases"
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode sudo) 
-
-# You can customize where you put it but it's generally recommended that you put in $HOME/.zplug
-if [[ ! -d ~/.zplug ]];then
-    git clone https://github.com/b4b4r07/zplug ~/.zplug
+# ---------- pyenv prompt (no subshell in PROMPT) ----------
+if command -v pyenv >/dev/null 2>&1; then
+  # Only virtualenv hooks; no prompt injection
+  eval "$(pyenv virtualenv-init -)"
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+  _pyenv_prompt=''
+  precmd() { _pyenv_prompt="$(pyenv version-name 2>/dev/null)"; }
+  PROMPT='%F{magenta}[%{${_pyenv_prompt}%}] %f'$PROMPT
 fi
 
-# Initialize plugins
-source ~/.zplug/init.zsh
+# ---------- gcloud: lazy-load completion ----------
+_gcloud_lazy_source() {
+  local comp_inc="$HOME/google-cloud-sdk/completion.zsh.inc"
+  [[ -f $comp_inc ]] && source "$comp_inc"
+  unfunction _gcloud_lazy_source
+}
+gcloud() { _gcloud_lazy_source; command gcloud "$@"; }
 
-# Load completion library for those sweet [tab] squares
-#zplug "lib/completion", from:oh-my-zsh
-#zplug "plugins/git", from:oh-my-zsh
-zplug "zsh-users/zsh-autosuggestions"
+# ---------- terraform: lazy bash completion ----------
+_ensure_bashcompinit() { (( $+functions[bashcompinit] )) || { autoload -U +X bashcompinit && bashcompinit; } }
+_terraform_lazy_comp() {
+  _ensure_bashcompinit
+  complete -o nospace -C /usr/bin/terraform terraform
+  compdef _bash_complete terraform
+}
+compdef _terraform_lazy_comp terraform
 
-# Requires the installation of zsh-syntax-highlighting (exists in both ubuntu and arch)
+# ---------- jump (no legacy compctl) ----------
+__jump_chpwd() { jump chdir }
+typeset -gaU chpwd_functions
+chpwd_functions+=(__jump_chpwd)
+j() { local dir; dir="$(jump cd "$@")"; [[ -d $dir ]] && cd "$dir"; }
 
-# Requrires to clone zsh-users/zsh-syntax-highlighting and zsh-users/zsh-autosuggestions
-source $ZSHUSERS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSHUSERS/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Directory change hook (keep, but no 'clear')
+function chpwd() { emulate -L zsh; ls -lh }
 
+# ---------- zsh-users plugins (load ONCE, after OMZ) ----------
+# Choose one method; do not also load via zplug.
+[[ -r "$ZSHUSERS/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && source "$ZSHUSERS/zsh-autosuggestions/zsh-autosuggestions.zsh"
 bindkey '^ ' autosuggest-accept
 bindkey '^j' autosuggest-execute
-# See https://github.com/zsh-users/zsh-autosuggestions
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
-source ~/.zsh_aliases
-
-
-ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
-fi
-source $ZSH/oh-my-zsh.sh
-
-# pyenv
-# Put in .profile:
-# eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-export PS1='%F{magenta}[$(pyenv version-name)] '$PS1
-
-# Jump
-# Requiries yay -S jump or sudo snap install jump
-## eval "$(jump shell zsh --bind=j)"
-
-# The following lines are autogenerated:
-__jump_chpwd() {
-  jump chdir
-}
-
-jump_completion() {
-  reply="'$(jump hint "$@")'"
-}
-
-j() {
-  local dir="$(jump cd $@)"
-  test -d "$dir" && cd "$dir"
-}
-
-typeset -gaU chpwd_functions
-chpwd_functions+=__jump_chpwd
-
-compctl -U -K jump_completion j
-
-############ Run ls after entering a directory
-function chpwd() {
-    emulate -L zsh
-    clear; ls -lh
-}
-
-# Source secrets
-source $HOME/.secrets/dev_env
-
-export QT_QPA_PLATFORMTHEME=qt5ct
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/tzanakis/google-cloud-sdk/path.zsh.inc' ]; then . '/home/tzanakis/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/tzanakis/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/tzanakis/google-cloud-sdk/completion.zsh.inc'; fi
+[[ -r "$ZSHUSERS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source "$ZSHUSERS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

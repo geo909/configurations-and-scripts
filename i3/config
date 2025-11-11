@@ -359,6 +359,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id fbxkb
 #exec --no-startup-id dropbox
 exec --no-startup-id flameshot
+exec --no-startup-id blueman-applet
 #
 #
 exec_always --no-startup-id ff-theme-util

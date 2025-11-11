@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# obsidiansync
+# A small utility for syncing an Obsidian folder to/from Dropbox.
+# Usage:
+#   obsidiansync -u   (upload local folder to Dropbox)
+#   obsidiansync -d   (download from Dropbox to local folder)
+
+# Adjust these paths as needed:
+LOCAL_PATH="$HOME/applications/Obsidian"
+DROPBOX_PATH="dropbox:Applications/Obsidian"
+
+case "$1" in
+  -u)
+    # Upload to Dropbox
+    rclone sync -v "$LOCAL_PATH" "$DROPBOX_PATH"
+    ;;
+  -d)
+    # Download from Dropbox
+    rclone sync -v "$DROPBOX_PATH" "$LOCAL_PATH"
+    ;;
+  *)
+    echo "Usage: $0 [-u | -d]"
+    exit 1
+    ;;
+esac
