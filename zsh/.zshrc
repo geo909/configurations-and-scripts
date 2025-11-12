@@ -57,3 +57,5 @@ bindkey '^ ' autosuggest-accept
 bindkey '^j' autosuggest-execute
 
 [[ -r "$ZSHUSERS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source "$ZSHUSERS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+[[ -f "$HOME/.secrets/dev_env" ]] && source "$HOME/.secrets/dev_env"
