@@ -364,6 +364,7 @@ exec --no-startup-id blueman-applet
 #
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+exec_always --no-startup-id ~/.config/i3/scripts/set_wallpapers.sh
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
