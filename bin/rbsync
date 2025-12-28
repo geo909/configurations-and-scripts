@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# dbsync: run rclone bisync for the current subfolder of ~/rclone/{dropbox,gdrive,mega}
+# Usage: cd ~/rclone/<provider>/<some/sub/folder> && dbsync [extra rclone args]
+
+set -euo pipefail
+
+RCLONE_ROOT="$HOME/rclone"
+VALID_PROVIDERS=("dropbox" "gd" "mega")
+
+# Ensure rclone is available
+if ! command -v rclone >/dev/null 2>&1; then
+  echo "Error: rclone not found in PATH." >&2
+  exit 127
+fi
+
+# Resolve current directory to an absolute, symlink-free path
+if command -v realpath >/dev/null 2>&1; then
+  CWD="$(realpath -e .)"
+else
+  CWD="$(pwd -P)"
+fi
+
+# Verify we are under the rclone root
+case "$CWD" in
+  "$RCLONE_ROOT" | "$RCLONE_ROOT"/)
+    echo "Error: You are at '$RCLONE_ROOT'. Please cd into a provider subfolder." >&2
+    exit 1
+    ;;
+  "$RCLONE_ROOT"/*)
+    REL_FROM_ROOT="${CWD#"$RCLONE_ROOT/"}"
+    ;;
+  *)
+    echo "Error: Current folder is not under '$RCLONE_ROOT'." >&2
+    echo "       CWD: $CWD" >&2
+    exit 1
+    ;;
+esac
+
+# Extract provider (first path component)
+PROVIDER="${REL_FROM_ROOT%%/*}"
+
+# Check provider is valid
+FOUND=0
+for p in "${VALID_PROVIDERS[@]}"; do
+  if [[ "$PROVIDER" == "$p" ]]; then
+    FOUND=1
+    break
+  fi
+done
+
+if [[ "$FOUND" -ne 1 ]]; then
+  echo "Error: '$PROVIDER' is not a supported rclone provider." >&2
+  echo "Supported providers: ${VALID_PROVIDERS[*]}" >&2
+  exit 1
+fi
+
+# Ensure we are not at the provider root
+if [[ "$REL_FROM_ROOT" == "$PROVIDER" ]]; then
+  echo "Error: You are at '$RCLONE_ROOT/$PROVIDER'." >&2
+  echo "       Please cd into a subfolder before running dbsync." >&2
+  exit 1
+fi
+
+# Compute relative path inside provider
+REL_PATH="${REL_FROM_ROOT#"$PROVIDER/"}"
+
+LOCAL="$CWD"
+CLOUD="$PROVIDER:$REL_PATH"
+
+echo "Running: rclone bisync -v \"$LOCAL\" \"$CLOUD\" $*"
+exec rclone bisync -v "$LOCAL" "$CLOUD" "$@"
