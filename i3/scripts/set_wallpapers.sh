@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Set the same random wallpaper on all monitors using feh (no stretching).
 
-WALLPAPER_DIR="$HOME/Pictures/wallpapers"
+WALLPAPER_DIR="$HOME/Pictures/wallpapers/Favourites"
 
 # Get a random image (jpg/png) from the directory
 IMG="$(find "$WALLPAPER_DIR" -type f \( -iname '*.jpg' -o -iname '*.png' \) | shuf -n 1)"
