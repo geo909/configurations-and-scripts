@@ -417,6 +417,7 @@ vmap <space> :
 nmap cc <tab>:cd %D<cr><tab>
 nmap cC :cd %d %c<cr>
 nmap <C-v> :!nvim<space>
+nmap e :edit<cr>
 
 " Case insensitive locate command
 set locateprg="locate -i %a" 

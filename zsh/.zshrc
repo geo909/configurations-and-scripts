@@ -25,12 +25,12 @@ if command -v pyenv >/dev/null 2>&1; then
 fi
 
 # ---------- gcloud: lazy-load completion ----------
-_gcloud_lazy_source() {
-  local comp_inc="$HOME/google-cloud-sdk/completion.zsh.inc"
-  [[ -f $comp_inc ]] && source "$comp_inc"
-  unfunction _gcloud_lazy_source
-}
-gcloud() { _gcloud_lazy_source; command gcloud "$@"; }
+#_gcloud_lazy_source() {
+#  local comp_inc="$HOME/google-cloud-sdk/completion.zsh.inc"
+#  [[ -f $comp_inc ]] && source "$comp_inc"
+#  unfunction _gcloud_lazy_source
+#}
+#gcloud() { _gcloud_lazy_source; command gcloud "$@"; }
 
 # ---------- terraform: lazy bash completion ----------
 _ensure_bashcompinit() { (( $+functions[bashcompinit] )) || { autoload -U +X bashcompinit && bashcompinit; } }
@@ -59,3 +59,7 @@ bindkey '^j' autosuggest-execute
 [[ -r "$ZSHUSERS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source "$ZSHUSERS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 [[ -f "$HOME/.secrets/dev_env" ]] && source "$HOME/.secrets/dev_env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
