@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# switch-theme.sh
+# Usage: ./switch-theme.sh [light|dark]
+
+THEME="$1"
+
+if [[ "$THEME" != "light" && "$THEME" != "dark" ]]; then
+    echo "Usage: $0 [light|dark]"
+    exit 1
+fi
+
+GTK2_CONF="$HOME/.gtkrc-2.0"
+GTK3_CONF="$HOME/.config/gtk-3.0/settings.ini"
+
+mkdir -p "$(dirname "$GTK3_CONF")"
+
+# Determine theme
+if [[ "$THEME" == "light" ]]; then
+    GTK_THEME="Adwaita"
+    ICON_THEME="elementary Xfce"
+elif [[ "$THEME" == "dark" ]]; then
+    GTK_THEME="Adwaita-dark"
+    ICON_THEME="elementary Xfce darker"
+fi
+
+# --- GTK2 ---
+cat > "$GTK2_CONF" <<EOL
+gtk-theme-name="$GTK_THEME"
+gtk-icon-theme-name="$ICON_THEME"
+EOL
+
+# --- GTK3 ---
+cat > "$GTK3_CONF" <<EOL
+[Settings]
+gtk-theme-name = $GTK_THEME
+gtk-icon-theme-name = $ICON_THEME
+EOL
+
+echo "Theme and icon theme switched to $THEME (you need to restart GTK apps for changes to take effect)"
