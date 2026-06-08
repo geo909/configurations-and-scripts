@@ -1,0 +1,26 @@
+# ~/.config/i3blocks/config
+separator_block_width=25
+markup=pango
+
+[keyboard]
+command=~/.config/i3/scripts/keyboard.sh
+interval=1
+
+[load]
+command=sh -c 'awk "{printf \"load %s  %s  %s\\n\", \$1, \$2, \$3}" /proc/loadavg'
+interval=5
+
+[time]
+command=date '+%a, %b %d - %H:%M'
+interval=30
+
+[battery]
+command=~/.config/i3/scripts/battery.sh
+interval=60
+
+[disk_root]
+command=sh -c "df -hP / | awk 'NR==2 { used=\$5; gsub(/%/, \"\", used); upct=used+0; txt=\"/: \" \$4 \" free (\" upct \"% used)  \"; print txt; print txt; if (upct>=90) c=\"#ff4d4d\"; else if (upct>=75) c=\"#ffb347\"; else c=\"#66ff66\"; print c }'"
+interval=60
+
+
+
