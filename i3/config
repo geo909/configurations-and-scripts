@@ -178,6 +178,7 @@ bindcode $mod+$w layout tabbed
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+bindcode $mod+$t floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -353,18 +354,19 @@ mode "resize" {
 # startup applications
 #
 exec --no-startup-id diodon
-exec --no-startup-id volumeicon
+exec --no-startup-id pasystray
 exec --no-startup-id xfce4-power-manager 
 exec --no-startup-id nm-applet
 exec --no-startup-id fbxkb
 #exec --no-startup-id dropbox
 exec --no-startup-id flameshot
+exec_always --no-startup-id setxkbmap -layout "us,gr" -option "grp:win_space_toggle" -option "grp:alt_shift_toggle" -option "caps:swapescape" 
 exec --no-startup-id blueman-applet
 #
-#
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id ~/.config/i3/scripts/set_wallpapers.sh
+
+#exec_always --no-startup-id ff-theme-util
+#exec_always --no-startup-id fix_xcursor
+#exec_always --no-startup-id ~/.config/i3/scripts/set_wallpapers.sh
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -399,32 +401,40 @@ set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	i3bar_command i3bar
-	status_command i3status
+    status_command i3blocks
+	font pango:Exo2, FontAwesome5Free, FontAwesome5Brands, SymbolsNerdFont 11
 	position bottom
+	mode dock
+	modifier None
 	tray_output primary
-	#tray_output eDP1
-	#tray_output DP1
-	bindsym button4 nop #?
-	bindsym button5 nop #?
-	font xft:URWGothic-Book 9
-    # font pango:monospace 10
-    # font FontAwesome 13
-    	# This causes custom name to strip the workspace number:
-	# strip_workspace_numbers yes
-	colors {
-	    background #222D31
-	    statusline #F9FAF9
-	    separator  #454947
-
-                           #border  backgr  text
-        focused_workspace  #F9FAF9 #16a085 #292F34
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
-    }
 }
+#bar {
+#	i3bar_command i3bar
+#	status_command i3status
+#	position bottom
+#	tray_output primary
+#	#tray_output eDP1
+#	#tray_output DP1
+#	bindsym button4 nop #?
+#	bindsym button5 nop #?
+#	font xft:URWGothic-Book 9
+#    # font pango:monospace 10
+#    # font FontAwesome 13
+#    	# This causes custom name to strip the workspace number:
+#	# strip_workspace_numbers yes
+#	colors {
+#	    background #222D31
+#	    statusline #F9FAF9
+#	    separator  #454947
+#
+#                           #border  backgr  text
+#        focused_workspace  #F9FAF9 #16a085 #292F34
+#        active_workspace   #595B5B #353836 #FDF6E3
+#        inactive_workspace #595B5B #222D31 #EEE8D5
+#        binding_mode       #16a085 #2C2C2C #F9FAF9
+#        urgent_workspace   #16a085 #FDF6E3 #E5201D
+#    }
+#}
 
 # hide/unhide i3status bar
 # bindsym $mod+m bar mode toggle
