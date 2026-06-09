@@ -44,7 +44,7 @@ elif [ "$PERCENT" -le 60 ]; then
 elif [ "$PERCENT" -le 80 ]; then
     COLOR="#ccff33"; FG="#000000"  # Greenish-Yellow
 else
-    COLOR="#66ff66"; FG="#000000"  # Green
+    COLOR="#0E590E"; FG="#ffffff"  # Green
 fi
 
 # 2. Determine formatting based on whether we are plugged in or not

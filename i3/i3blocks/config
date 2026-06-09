@@ -7,7 +7,7 @@ command=~/.config/i3/scripts/keyboard.sh
 interval=1
 
 [load]
-command=sh -c 'awk "{printf \"load %s  %s  %s\\n\", \$1, \$2, \$3}" /proc/loadavg'
+command=~/.config/i3/scripts/load.sh
 interval=5
 
 [time]

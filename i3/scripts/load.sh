@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Read the 1, 5, and 15 minute load averages from /proc/loadavg
+read -r LOAD_1 LOAD_5 LOAD_15 _ < /proc/loadavg
+
+# Determine the urgency status using awk
+STATUS=$(awk -v val="$LOAD_1" 'BEGIN {
+    if (val >= 3.0)      print "CRIT"
+    else if (val >= 1.5) print "WARN"
+    else                 print "NORMAL"
+}')
+
+# Format the Pango markup dynamically based on urgency
+if [ "$STATUS" = "CRIT" ]; then
+    TEXT="<span background=\"#ff4d4d\" foreground=\"#ffffff\"> load $LOAD_1  $LOAD_5  $LOAD_15 </span>"
+elif [ "$STATUS" = "WARN" ]; then
+    TEXT="<span background=\"#ffb347\" foreground=\"#000000\"> load $LOAD_1  $LOAD_5  $LOAD_15 </span>"
+else
+    TEXT="<span foreground=\"#0E590E\">load $LOAD_1  $LOAD_5  $LOAD_15</span>"
+fi
+
+# Output for i3blocks
+echo "$TEXT"
+echo "load $LOAD_1"
