@@ -20,10 +20,10 @@ if [ -z "$TEMP" ]; then
 fi
 
 # Format Pango markup dynamically based on heat thresholds
-if [ "$TEMP" -ge 92 ]; then
+if [ "$TEMP" -ge 97 ]; then
     # Critical: Red background block
     TEXT="<span background=\"$RED\" foreground=\"$WHITE\"> ${TEMP}°C </span>"
-elif [ "$TEMP" -ge 80 ]; then
+elif [ "$TEMP" -ge 90 ]; then
     # Warning: Orange background block
     TEXT="<span background=\"$ORANGE\" foreground=\"$BLACK\"> ${TEMP}°C </span>"
 else
