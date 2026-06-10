@@ -22,17 +22,17 @@ STATUS=$(echo "$STATUS" | xargs)
 # Map the raw status to display labels with a threshold safeguard
 case "$STATUS" in
     "Charging")
-        LABEL="⚡ CHR"
+        LABEL="🔌 Charging"
         ;;
     "Full"|"Not charging")
         if [ "$PERCENT" -ge 98 ]; then
-            LABEL="⚡ FULL"
+            LABEL="🔌 Full"
         else
-            LABEL="⚡ AC"  # Plugged in, but battery charge is capped/paused
+            LABEL="🔌 AC"  # Plugged in, but battery charge is capped/paused
         fi
         ;;
     *)
-        LABEL="▮ BAT"
+        LABEL="🔋 BAT"
         ;;
 esac
 

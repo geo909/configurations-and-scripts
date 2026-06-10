@@ -7,8 +7,8 @@ read -r LOAD_1 LOAD_5 LOAD_15 _ < /proc/loadavg
 
 # Determine the urgency status using awk
 STATUS=$(awk -v val="$LOAD_1" 'BEGIN {
-    if (val >= 3.0)      print "CRIT"
-    else if (val >= 1.5) print "WARN"
+    if (val >= 4.0)      print "CRIT"
+    else if (val >= 2.5) print "WARN"
     else                 print "NORMAL"
 }')
 
